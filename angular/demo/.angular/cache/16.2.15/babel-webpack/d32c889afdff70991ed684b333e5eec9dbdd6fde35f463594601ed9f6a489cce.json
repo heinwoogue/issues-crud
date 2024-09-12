@@ -1,0 +1,1 @@
+{"ast":null,"code":"export class Issue {}","map":{"version":3,"names":["Issue"],"sources":["/Users/heinrichwoogue/Desktop/Heinrich/study/issues-crud/angular/demo/src/app/issue/issues.ts"],"sourcesContent":["export class Issue {\n  _id: string;\n  t\n}\n"],"mappings":"AAAA,OAAM,MAAOA,KAAK","ignoreList":[]},"metadata":{},"sourceType":"module","externalDependencies":[]}
