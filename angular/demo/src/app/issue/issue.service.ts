@@ -28,30 +28,20 @@ export class IssueService {
     return this.http.get<Issue[]>(this.url, { params, headers });
   }
 
-  save(entity: Issue): Observable<Issue> {
+  save(issue: Issue): Observable<Issue> {
     let params = new HttpParams();
-    let url = '';
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    if (entity._id) {
-      url = `http://www.angular.at/api/issue/${entity._id.toString()}`;
-      params = new HttpParams().set('ID', entity._id.toString());
-      return this.http.put<Issue>(url, entity, { headers, params });
+    if (issue._id) {
+      return this.http.put<Issue>(`${this.url}/${issue._id}`, issue, { headers, params });
     } else {
-      url = `http://www.angular.at/api/issue`;
-      return this.http.post<Issue>(url, entity, { headers, params });
+      return this.http.post<Issue>(this.url, issue, { headers, params });
     }
   }
 
-  delete(entity: Issue): Observable<Issue> {
+  delete(id: string): Observable<Issue> {
     let params = new HttpParams();
-    let url = '';
     const headers = new HttpHeaders().set('content-type', 'application/json');
-    if (entity._id) {
-      url = `http://www.angular.at/api/issue/${entity._id.toString()}`;
-      params = new HttpParams().set('ID', entity._id.toString());
-      return this.http.delete<Issue>(url, { headers, params });
-    }
-    return EMPTY;
+    return this.http.delete<Issue>(`${this.url}/${id}`, { headers, params });
   }
 }
 

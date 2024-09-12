@@ -9,6 +9,32 @@
     <h2 class="title">Issue List</h2>
   </div>
 </div>
+
+<div class="card">
+  <div class="header" >
+    <form [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+      <ng-container *ngIf="issueToEdit">
+        Id: {{issueToEdit._id}}
+      </ng-container>
+      <br/><br/>
+
+      Title:
+      <input type="text" formControlName="title"/>
+      &nbsp;
+      <small *ngIf="issueForm.get('title')?.errors?.['required']">Title is required.</small>
+      <br/><br/>
+      Description:
+      <input type="text" formControlName="description"/>
+      &nbsp;
+      <small *ngIf="issueForm.get('description')?.errors?.['required']">Description is required.</small>
+      <br/><br/>
+
+      <button type="submit">{{issueToEdit ? 'Update': 'Create'}}</button>
+    </form>
+    <br/><br/>
+  </div>
+</div>
+
 <div class="card">
   <div class="table-responsive">
     <table class="table table-centered table-hover mt-2" id="datatable">
@@ -17,6 +43,7 @@
           <th class="border-top-0" scope="col">Id</th>
           <th class="border-top-0" scope="col">Title</th>
           <th class="border-top-0" scope="col">Description</th>
+          <td class="border-top-0" scope="col">Actions</td>
         </tr>
       </thead>
       <tbody>
@@ -25,6 +52,11 @@
           <td>{{item._id}}</td>
           <td>{{item.title}}</td>
           <td>{{item.description}}</td>
+          <td>
+            <button (click)="onEdit(item)">Edit</button> 
+            &nbsp;&nbsp;
+            <button (click)="onDelete(item._id)">Delete</button>
+          </td>
         </tr>
       </tbody>
     </table>

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IssueEditComponent } from './issue-edit/issue-edit.component';
 import { IssuesListListComponent } from './issue-list/issue-list.component';
@@ -11,6 +11,7 @@ import { IssueService } from './issue.service';
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(FLIGHT_ROUTES)
   ],
   declarations: [
